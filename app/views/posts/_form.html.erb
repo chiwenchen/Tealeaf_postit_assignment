@@ -1,0 +1,22 @@
+<% if @post.errors.any? %>
+	<div class = 'alert alert-error'>
+	<h3> There are some errors:</h3>
+	<% @post.errors.full_messages.each do |msg| %>
+    <li>
+		<%= msg %>
+		</li>
+	<% end %>
+	</div>
+<% end %>
+
+<%= form_for @post do |f|%> <!-- have = sign here --> 
+	<%= f.label :title %> <!-- here  can only be attribute or virtual attribute, cant't be anything!! -->
+	<%= f.text_field :title %>
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+	<%= f.label :post_categories %>
+	<%= f.text_field :post_categories %>
+
+</br>
+	<%= f.submit "Create Post", class: 'btn btn-primary'%> <!-- here is class:, not class = --> 
+<% end %>
