@@ -16,9 +16,9 @@
 </p>
 
 <!-- Show comments, styling issue!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-<%= render 'comment', comments: @post.comments %>
+<%= render 'posts/comment', comments: @post.comments %>
 <!-- Create comment -->
-
+<%= render 'shared/error', obj: @comment %>
 <% if logged_in? %>
   <hr>
   <%= form_for [@post, @comment] do |f| %> <!-- remember the [ ], and @post is the exsiting OBJ which the @comment is the new OBJ -->
