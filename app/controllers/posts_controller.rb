@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post.creator = current_user
 
     if @post.save
-      flash[:success] = 'Your post is create successfully'
+      flash[:notice] = 'Your post is create successfully'
       redirect_to posts_path
     else
       render 'new'
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(strong_params)
-      flash[:success] = 'Your post is updated!'
+      flash[:notice] = 'Your post is updated!'
       redirect_to posts_path
     else
       render 'edit'
