@@ -1,0 +1,14 @@
+<h2>Log in</h2>
+
+<%= form_tag '/login' do %>
+	<%= label_tag :username %>
+	<%= text_field_tag :username, params[:username] || '' %>
+	<br>
+	<%= label_tag :password %>
+	<%= password_field_tag :password, params[:password] || '' %>	
+	<br>
+	<%= submit_tag 'login', class: 'btn btn-primary' %>
+<% end %>
+
+<!-- params[:username] || '' 
+這個參數是顯示於框中的值，這個語法代表若先前有輸入值則會顯示在框中．若無則顯示空白． -->

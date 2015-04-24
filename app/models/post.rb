@@ -5,8 +5,25 @@ class Post < ActiveRecord::Base
   # $post.user <--NO OK anymore 
   has_many :post_categories
   has_many :categories, through: :post_categories
+  has_many :votes, as: :voteable #polymorphic syntex.
 
   validates :title, presence: true
   validates :url, presence: true
+
+  def count_vote
+    vote_up - vote_down
+  end
+
+  def vote_up
+    self.votes.where(vote: true).size
+  end
+
+  def vote_down
+    self.votes.where(vote: false).size
+  end
+
+  def vote_size
+    self.votes
+  end
 
 end

@@ -1,0 +1,38 @@
+<% if comments.any? %>
+<hr>
+<% end %>
+<% comments.each do |comment|%>
+  <div class = 'row'>
+    <div class = 'span4 well'>
+
+      <div class= 'pull-right'>
+        <% if !voted?(comment) %>
+        <%= link_to vote_comment_path(comment, vote: true), method: 'post' do %>
+          <i class = 'icon-thumbs-up'></i>
+        <% end %>
+        <%= link_to vote_comment_path(comment, vote: false), method: 'post' do %>
+          <i class = 'icon-thumbs-down'></i>
+        <% end %>
+        <% end %>
+          <span class = "label label-<%= comment.count_vote >= 0 ? "info" : "warning" %>">
+            <%= comment.count_vote %> liked
+          </span>
+      </div>
+
+      <%= comment.body %>
+      <br>
+      <br>
+      <span class = 'quiet'>by:</span> 
+      <strong>
+        <%= link_to comment.user.username, user_path(comment.user, show_info: 'post') %>
+      </strong>
+      <br>
+      <% if params[:show_info] == 'comment'%>
+      <span class = 'quiet'>Comment on:</span> 
+      <strong>
+        <%= link_to comment.post.title, post_path(comment.post) %>
+      </strong>
+      <% end %>
+   </div>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+
+<%= render 'shared/content_title', title: ' &raquo; '.html_safe + @category.name %>
+<!-- html_safe can transfer string back to HTML code -->
+<% @category.posts.each do |post| %>
+	<%= render 'posts/post', post: post %>
+<% end %>

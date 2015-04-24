@@ -1,0 +1,36 @@
+<!-- Error message -->
+
+<%= render 'shared/error', obj: @user %>
+
+<!-- Form -->
+<div class = 'span8 well'>
+  <%= form_for @user do |f| %>
+
+    <div class = 'control_group'> 
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
+    <% if show_password == true %>
+    <div class = 'control_group'> 
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <% end %>
+    <div class = 'control_group'> 
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+    </div>
+
+    <div class = 'control_group'> 
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <!-- gender -->
+
+    <br>
+    
+    <%= f.submit current_user ? "Update Profile" : "Register Now" , class: 'btn btn-primary'%>
+  <% end %> 
+
+</div>

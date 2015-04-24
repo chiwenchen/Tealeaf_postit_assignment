@@ -1,22 +1,43 @@
-<% if @post.errors.any? %>
-  <div class = 'alert alert-error'>
-  <h3> There are some errors:</h3>
-  <% @post.errors.full_messages.each do |msg| %>
-    <li>
-    <%= msg %>
-    </li>
-  <% end %>
-  </div>
-<% end %>
+<%= render 'shared/error', obj: @post %>
 
 <%= form_for @post do |f|%> <!-- have = sign here --> 
-  <%= f.label :title %> <!-- here  can only be attribute or virtual attribute, cant't be anything!! -->
-  <%= f.text_field :title %>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <%= f.label :post_categories %>
-  <%= f.text_field :post_categories %>
 
-</br>
-  <%= f.submit "Create Post", class: 'btn btn-primary'%> <!-- here is class:, not class = --> 
+  <div class = 'control_group'>  
+    <%= f.label :title %> <!-- here  can only be attribute or virtual attribute, cant't be anything!! -->
+    <%= f.text_field :title %>
+  </div>
+  <div class = 'control_group'>  
+    <%= f.label :url %> <!-- here  can only be attribute or virtual attribute, cant't be anything!! -->
+    <%= f.text_field :url %>
+  </div>
+  <div class = 'control_group'>  
+    <%= f.label :description %> <!-- here  can only be attribute or virtual attribute, cant't be anything!! -->
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+  <div class = 'control_group'>  
+    <%= f.label 'Categories' %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: 'checkbox inline') {cb.check_box(class: 'checkbox') + cb.text} %>
+    <% end %>
+  </div>
+  </br>
+  <%= f.submit create_or_update_button, class: 'btn btn-primary'%> <!-- here is class:, not class = --> 
+<% end %>   
+
+
+<!-- TEST AREA 
+<%= form_tag('/tests', method: 'get') do %>
+  <%= label_tag(:q, 'Search for:') %>
+  <%= text_field_tag(:q) %>
+  <br>
+  <div class = 'checkbox inline'>
+  <%= check_box_tag(:own_dog) %>
+  <%= label_tag(:own_dog, 'I own a dog') %>
+  </div>
+  <br>
+  <%= submit_tag('Search', class: 'btn btn-primary')  %>
+
 <% end %>
+-->
+
+

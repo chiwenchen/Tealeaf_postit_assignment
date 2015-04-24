@@ -1,0 +1,14 @@
+<%= render 'shared/error', obj: @category %>
+
+<h2>Create New Cagetory</h2>
+<hr>
+
+<%= form_for @category do |f| %>
+  <div class = 'control_group'>
+    <%= f.label :name, 'Category Name' %>
+    <%= f.text_field :name %>
+  </div>
+  <br>
+  <%= f.submit 'Create New Category', class: 'btn btn-primary' %>
+<% end %>
+ 
