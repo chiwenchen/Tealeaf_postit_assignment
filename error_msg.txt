@@ -1,0 +1,25 @@
+==  CreatCategory: migrating ==================================================
+-- create_table(:categories)
+   -> 0.0169s
+==  CreatCategory: migrated (0.0178s) =========================================
+
+rake aborted!
+superclass mismatch for class PostCategory
+/app/db/migrate/20150317132121_post_category.rb:1:in `<top (required)>'
+/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:718:in `load_migration'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:714:in `migration'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:708:in `disable_ddl_transaction'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:1012:in `use_transaction?'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:922:in `rescue in block in migrate'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:919:in `block in migrate'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:916:in `each'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:916:in `migrate'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:764:in `up'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:742:in `migrate'
+/app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/railties/databases.rake:42:in `block (2 levels) in <top (required)>'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
