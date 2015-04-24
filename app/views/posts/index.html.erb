@@ -1,6 +1,6 @@
-<%= render 'shared/content_title', title: nil %>
+<div class = 'container'>
+	<%= render 'shared/content_title', title: nil %>
 <% @posts.each do |post| %>
   <%= render 'post', post: post %>
 <% end %>
-
-
+</div>
