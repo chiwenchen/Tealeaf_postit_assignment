@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def create
 
     @comment = Comment.new(params.require(:comment).permit(:body))
-    @comment.post = Post.find(params[:post_id])
+    @comment.post = Post.find_by(slug: params[:post_id])
     @comment.user = current_user
     @post = @comment.post
 
@@ -18,10 +18,13 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    comment = Comment.find(params[:id])
-    Vote.create(voteable: comment, voter: current_user, vote: params[:vote])
-
-    redirect_to :back
+    @comment = Comment.find(params[:id])
+    Vote.create(voteable: @comment, voter: current_user, vote: params[:vote])
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js 
+    end
+    
   end
 
 end

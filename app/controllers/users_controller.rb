@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+
+    @user = User.find(params[:format])
   end
 
   def edit
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
   private
 
   def strong_params
-    params.require(:user).permit(:username, :password, :phone_number, :email)
+    params.require(:user).permit(:username, :password, :phone_number, :email, :time_zone)
   end
 
 end

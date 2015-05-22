@@ -1,0 +1,3 @@
+$('#vote_on_<%= @post.slug %>_post').html('<%= @post.count_vote %>')
+$('#post_<%= @post.slug %>_voted_up').html('') // Hide arrow when voted
+$('#post_<%= @post.slug %>_voted_down').html('') // Hide arrow when voted

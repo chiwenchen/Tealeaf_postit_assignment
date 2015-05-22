@@ -1,27 +1,29 @@
 <!-- passing attr: post -->
-  <div class = 'row'>
+<div class = 'row'>
+    <div class = "span1 well text-center">
 
-    <div class = 'span1 well text-center'>
-
-      <% if !voted?(post) %>
-        <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
-          <i class = 'icon-arrow-up'></i>
-        <% end %>
+      <% if can_vote?(post) %>
+        <div id = 'post_<%= post.slug %>_voted_up'> <!-- for Ajox -->
+          <%= link_to vote_post_path(post, vote: true), method: 'post',remote: true do %>
+            <i class = 'icon-arrow-up'></i>
+          <% end %>
+        </div>
       <% end %>
-
+      <span id = 'vote_on_<%= post.slug %>_post'><!-- for Ajox -->
+        <%= post.count_vote %></span> liked
       <br>
-      <%= post.count_vote %> liked
-      <br>
 
-      <% if !voted?(post) %>
-        <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
-          <i class = 'icon-arrow-down'></i>
-        <% end %>
+      <% if can_vote?(post) %>
+      <div id = 'post_<%= post.slug %>_voted_down'><!-- for Ajox -->  
+         <%= link_to vote_post_path(post, vote: false), method: 'post',remote: true do %>
+           <i class = 'icon-arrow-down'></i>
+         <% end %>
+      </div>
       <% end %>
 
     </div>
 
-    <div class = 'span8 well'>
+    <div class = "span8 well">
 
       <%= render post.categories %>
 
@@ -34,10 +36,12 @@
 
       <small>
         <span>
-          <%= link_to "#{post.comments.size} comments", post_path(post)%>
+          <%= link_to "#{post.comments.size} comments", post_path(post.to_param)%>
         </span>
       </small>
 
     </div>
-  </div>
+</div>
+
+
 

@@ -1,6 +1,9 @@
-<div class = 'container'>
-	<%= render 'shared/content_title', title: nil %>
-<% @posts.each do |post| %>
-  <%= render 'post', post: post %>
-<% end %>
-</div>
+
+	<div class = 'row'>
+		<%= render 'shared/content_title', title: nil %>
+	</div>
+
+	<% @posts.each do |post| %>
+  	<%= render 'post', post: post %>
+	<% end %>
+

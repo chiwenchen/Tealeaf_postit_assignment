@@ -1,54 +1,59 @@
-<div class = 'container'>
-<div class = 'row'>  
-  <ul class="nav">
-  <li>
-    <%= link_to "Postit!", root_path, :class => 'brand' %>
-  </li>
 
-</ul>
+  <div class = 'row-fluid'>  
+    
+    <div class = 'span4 offset1 nav_item'>
 
-<div class = 'span12 nav_item'>
-  <% if logged_in? %>
-    <%= link_to 'New Post', new_post_path, class: 'btn btn-success' %>
-  <% end %>
-
-
-  <!--   DROPDOWN  button-->
-  <div class="btn-group">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-      Category
-      <i class="caret"></i>
-      <!-- <span class="caret"></span> --> <!-- this also works like the line above -->
-    </button>
-  <!--   DROPDOWN  menu-->
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-      <% Category.all.each do |category| %>
-        <li role="presentation">
-          <%= link_to category.name, category_path(category) %>
+      <ul class="nav">
+        <li>
+          <%= link_to "Postit!", root_path, :class => 'brand' %>
         </li>
-      <% end %>
+      </ul>
+
       <% if logged_in? %>
-      <li class = 'divider'></li>
-      <li>      
-        <%= link_to(new_category_path) do %>
-          <i class = 'icon-plus'></i>
-          New Category
-        <% end %>
-      </li>
+        <%= link_to 'New Post', new_post_path, class: 'btn btn-success' %>
       <% end %>
-    </ul>
+
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+          Category
+          <i class="caret"></i>
+          <!-- <span class="caret"></span> --> <!-- this also works like the line above -->
+        </button>
+      <!--   DROPDOWN  menu-->
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <% Category.all.each do |category| %>
+            <li role="presentation">
+              <%= link_to category.name, category_path(category) %>
+            </li>
+          <% end %>
+          <% if logged_in? %>
+          <li class = 'divider'></li>
+          <li>      
+            <%= link_to(new_category_path) do %>
+              <i class = 'icon-plus'></i>
+              New Category
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class = 'span6 nav_item'>
+      <!--   DROPDOWN  button-->
+
+      <!-- User authentication -->
+      <div class = 'pull-right'>
+        <% if logged_in? %> <!-- logged_in -->
+          <div class = 'brand'> Hi, <%= current_user.username %> </div>
+          <%= link_to 'Profile', profile_path(current_user, show_info: 'post'), class: 'btn btn-success'%>
+          <%= link_to 'Logout', logout_path, class: 'btn btn-warning' %>
+        <% else %>
+          <%= link_to 'Register', register_path, class: 'btn btn-success' %>
+          <%= link_to 'Login', login_path, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
-  <!-- User authentication -->
-  <div class = 'pull-right'>
-    <% if logged_in? %> <!-- logged_in -->
-      <div class = 'brand'> Hi, <%= current_user.username %> </div>
-      <%= link_to 'Profile', user_path(current_user, show_info: 'post'), class: 'btn btn-success'%>
-      <%= link_to 'Logout', logout_path, class: 'btn btn-warning' %>
-    <% else %>
-      <%= link_to 'Register', register_path, class: 'btn btn-success' %>
-      <%= link_to 'Login', login_path, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-</div>
-</div>
-</div>

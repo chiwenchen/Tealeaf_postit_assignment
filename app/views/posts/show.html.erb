@@ -1,5 +1,5 @@
 <!-- Edit link -->
-<% if @post.creator == current_user %>
+<% if logged_in? and (@post.creator == current_user || current_user.username == 'admin') %>
 <div class = 'pull-right'>
   [<%= link_to 'Edit this Post', edit_post_path(@post)%>]
 </div>
@@ -15,7 +15,7 @@
   <%= @post.description %>
 </p>
 
-<!-- Show comments, styling issue!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!-- Show comments -->
 <%= render 'posts/comment', comments: @post.comments %>
 <!-- Create comment -->
 <%= render 'shared/error', obj: @comment %>

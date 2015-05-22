@@ -2,8 +2,9 @@ class PostsController < ApplicationController
 
   #require 'pry'
 
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
+  before_action :require_creator, only: [:edit, :update]
   # Use case:
   #   1. setup instance variable for action
   #   2. redirect base on some condition. EX: authutication.
@@ -14,6 +15,13 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      format.json do 
+        render json: @post
+      end
+    end
   end
 
   def new
@@ -45,19 +53,25 @@ class PostsController < ApplicationController
   end
 
   def vote # this action is been routed in route.rb using member syntex
-    post = Post.find(params[:id])
-    Vote.create(voteable: post, voter: current_user, vote: params[:vote]) #voteable is polymorphic convention
-    redirect_to :back
+    Vote.create(voteable: @post, voter: current_user, vote: params[:vote]) #voteable is polymorphic convention
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
   end
 
   def set_post 
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
+  end
+
+  def require_creator
+    access_denied unless logged_in? and (current_user == @post.creator || current_user.username == 'admin')
   end
 
   private
 
   def strong_params
-    params.require(:post).permit! # permit! will permit all attributes
+    params.require(:post).permit(:title, :url, :description, :user_id) # permit! will permit all attributes
   end
 
 end

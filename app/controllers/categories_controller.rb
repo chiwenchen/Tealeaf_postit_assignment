@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params.require(:category).permit!)
+    @category = Category.new(params.require(:category).permit(:name))
     if @category.save
       flash[:notice] = 'Category is created'
       redirect_to posts_path
@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   end
 
   def show 
-    @category = Category.find(params[:id])
+    @category = Category.find_by(slug: params[:id])
   end
 
 end

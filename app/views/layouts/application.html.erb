@@ -6,6 +6,9 @@
     <title>Tealeaf Academy - Postit</title>
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
@@ -23,13 +26,12 @@
       </div>
     </header>
     <div id="main" role="main">
-      <div class="container">
-         <div class="row">
-          <div class="span12">
-            <%= render 'layouts/messages' %>
-            <%= yield %>
-          </div>
-        </div>
+      <div class = 'container'>
+
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+
+      </div>
         <footer>
         </footer>
       </div> <!--! end of .container -->

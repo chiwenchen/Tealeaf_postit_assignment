@@ -8,15 +8,19 @@
     <div class = 'span4 well'>
 
       <div class= 'pull-right'>
-        <% if !voted?(comment) %>
-        <%= link_to vote_comment_path(comment, vote: true), method: 'post' do %>
-          <i class = 'icon-thumbs-up'></i>
+        <% if can_vote?(comment) %>
+          <%= link_to vote_comment_path(comment, vote: true), method: 'post', remote: true do %>
+            <span id = 'vote_up_for_<%= comment.id%>_comment'>
+              <i class = 'icon-thumbs-up'></i>
+            </span>
+          <% end %>
+          <%= link_to vote_comment_path(comment, vote: false), method: 'post', remote: true do %>
+            <span id = 'vote_down_for_<%= comment.id%>_comment'>
+              <i class = 'icon-thumbs-down'></i>
+            </span>
+          <% end %>
         <% end %>
-        <%= link_to vote_comment_path(comment, vote: false), method: 'post' do %>
-          <i class = 'icon-thumbs-down'></i>
-        <% end %>
-        <% end %>
-          <span class = "label label-<%= comment.count_vote >= 0 ? "info" : "warning" %>">
+          <span id = 'vote_<%= comment.id%>_comment' class = "label label-<%= comment.count_vote >= 0 ? "info" : "warning" %>">
             <%= comment.count_vote %> liked
           </span>
       </div>
@@ -36,5 +40,6 @@
       </strong>
       <% end %>
    </div>
+
   </div>
 <% end %>
