@@ -10,7 +10,7 @@ PostitTemplate::Application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   #get '/profile', to: 'users#show'
-  #get '/profile', controller: :users, to: :show
+  get '/profile', controller: :users, to: :show
 
   
   resources :posts, except: [:destroy] do
